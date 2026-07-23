@@ -1,0 +1,348 @@
+/* ===================================================================
+   Tabea & Dani — Hochzeit 10.10.2026
+   =================================================================== */
+
+:root{
+  --ivory: #faf6ef;
+  --ivory-dark: #f2ebdd;
+  --ink: #2c2a24;
+  --ink-soft: #5b564a;
+  --green: #4a5a45;
+  --green-dark: #37402f;
+  --rust: #b3663a;
+  --gold: #ab8b57;
+  --line: rgba(44,42,36,0.12);
+  --shadow: 0 20px 60px rgba(30,25,15,0.12);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:var(--sans);
+  background:var(--ivory);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3,h4{ font-family:var(--serif); font-weight:500; margin:0; color:var(--ink); }
+p{ margin:0; }
+
+.container{ max-width:1100px; margin:0 auto; padding:0 24px; }
+.container.narrow{ max-width:760px; }
+.center{ text-align:center; }
+
+.kicker{
+  font-family:var(--sans);
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-size:.72rem;
+  color:var(--green);
+  margin-bottom:14px;
+  font-weight:500;
+}
+.kicker.center{ text-align:center; }
+
+.lead{
+  font-size:1.08rem;
+  line-height:1.75;
+  color:var(--ink-soft);
+  max-width:640px;
+  margin:22px auto 0;
+}
+.note{
+  font-size:.92rem;
+  color:var(--ink-soft);
+  line-height:1.7;
+  margin-top:28px;
+}
+
+.section{ padding:110px 0; position:relative; }
+.section h2{ font-size:clamp(2rem, 4vw, 2.7rem); }
+
+/* ---------- Reveal animation ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+/* ---------- Progress bar ---------- */
+.progress-bar{
+  position:fixed; top:0; left:0; height:3px; width:0%;
+  background:var(--gold); z-index:2000; transition:width .1s linear;
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 32px;
+  transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+}
+.site-header.scrolled{
+  background:rgba(250,246,239,0.92);
+  backdrop-filter:blur(10px);
+  padding:14px 32px;
+  box-shadow:0 2px 24px rgba(30,25,15,0.08);
+}
+.brand{
+  font-family:var(--serif); font-size:1.5rem; letter-spacing:.05em;
+  text-decoration:none; color:#fff; transition:color .4s ease;
+}
+.site-header.scrolled .brand{ color:var(--ink); }
+.brand span{ color:var(--gold); font-style:italic; }
+
+.main-nav{ display:flex; gap:34px; }
+.main-nav a{
+  text-decoration:none; font-size:.9rem; letter-spacing:.03em;
+  color:#fff; position:relative; padding:4px 0; transition:color .4s ease;
+}
+.site-header.scrolled .main-nav a{ color:var(--ink); }
+.main-nav a::after{
+  content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background:currentColor; transition:width .3s ease;
+}
+.main-nav a:hover::after{ width:100%; }
+
+.nav-toggle{
+  display:none; flex-direction:column; gap:5px; background:none; border:none;
+  cursor:pointer; padding:8px; z-index:1100;
+}
+.nav-toggle span{
+  width:24px; height:2px; background:#fff; transition:all .3s ease;
+}
+.site-header.scrolled .nav-toggle span{ background:var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero{ position:relative; }
+
+.hero-image{
+  position:relative; height:82vh; min-height:460px; max-height:820px;
+  overflow:hidden;
+}
+.hero-image img{
+  width:100%; height:100%; object-fit:cover; object-position:center 38%;
+}
+.hero-image-fade{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,
+    rgba(20,18,12,.32) 0%,
+    rgba(20,18,12,.04) 20%,
+    rgba(20,18,12,0) 42%,
+    rgba(250,246,239,0) 42%,
+    rgba(250,246,239,0) 66%,
+    rgba(250,246,239,.10) 76%,
+    rgba(250,246,239,.28) 84%,
+    rgba(250,246,239,.52) 90%,
+    rgba(250,246,239,.78) 95%,
+    rgba(250,246,239,.94) 98%,
+    var(--ivory) 100%);
+}
+
+.hero-band{
+  position:relative; text-align:center; background:var(--ivory);
+  padding:26px 24px 64px;
+}
+.hero-names{
+  font-size:clamp(2.6rem, 7vw, 5rem); line-height:1; color:var(--ink);
+}
+.hero-names .amp{ color:var(--gold); font-style:italic; padding:0 .12em; }
+.hero-date{
+  font-size:1.15rem; letter-spacing:.1em; margin-top:18px; font-weight:300;
+  color:var(--ink-soft);
+}
+.hero-tagline{
+  font-family:var(--serif); font-style:italic; font-size:1.35rem;
+  margin-top:8px; color:var(--rust);
+}
+
+.countdown{
+  display:flex; gap:28px; justify-content:center; margin-top:38px;
+}
+.countdown-item{ display:flex; flex-direction:column; align-items:center; min-width:56px; }
+.countdown .num{
+  font-family:var(--serif); font-size:2.1rem; font-weight:600; color:var(--ink);
+}
+.countdown .label{
+  text-transform:uppercase; font-size:.65rem; letter-spacing:.15em; color:var(--ink-soft); margin-top:2px;
+}
+
+/* Countdown over the hero photo, sitting in the sky above the couple */
+.countdown.countdown--hero{
+  position:absolute; top:96px; left:50%; transform:translateX(-50%);
+  margin-top:0; z-index:2; gap:30px;
+}
+.countdown--hero .num{ color:#fff; }
+.countdown--hero .label{ color:rgba(255,255,255,.82); }
+
+.scroll-cue{
+  position:relative; display:block; margin:44px auto 0;
+  width:26px; height:42px; border:1.5px solid var(--line); border-radius:16px;
+}
+.scroll-cue span{
+  position:absolute; top:7px; left:50%; transform:translateX(-50%);
+  width:4px; height:8px; border-radius:2px; background:var(--green);
+  animation:scrollDown 1.8s infinite;
+}
+@keyframes scrollDown{
+  0%{ opacity:1; top:7px; } 70%{ opacity:0; top:22px; } 100%{ opacity:0; top:22px; }
+}
+
+/* ---------- Willkommen ---------- */
+.willkommen{ padding-top:130px; }
+
+/* ---------- Timeline ---------- */
+.timeline-wrap{
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:56px;
+}
+.timeline-day h3{
+  font-size:1.4rem; margin-bottom:26px; color:var(--green-dark);
+  border-bottom:1px solid var(--line); padding-bottom:14px;
+}
+.day-year{ color:var(--gold); font-style:italic; }
+.timeline{ list-style:none; margin:0; padding:0; }
+.timeline li{
+  display:flex; gap:20px; padding:16px 0; border-bottom:1px dashed var(--line);
+}
+.timeline li:last-child{ border-bottom:none; }
+.timeline .time{
+  font-family:var(--serif); font-weight:600; font-size:1.15rem; color:var(--rust);
+  min-width:64px; flex-shrink:0;
+}
+.timeline .event{ line-height:1.55; color:var(--ink-soft); }
+.timeline .event strong{ color:var(--ink); font-weight:500; }
+
+/* ---------- Anreise ---------- */
+.anreise{ background:var(--ivory-dark); }
+.table-wrap{ margin-top:40px; overflow-x:auto; }
+.stops-table{
+  width:100%; border-collapse:collapse; background:#fff;
+  box-shadow:var(--shadow); border-radius:10px; overflow:hidden;
+}
+.stops-table th, .stops-table td{
+  padding:16px 20px; text-align:left; font-size:.95rem;
+}
+.stops-table thead th{
+  background:var(--green-dark); color:var(--ivory);
+  text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; font-weight:500;
+}
+.stops-table tbody tr:nth-child(even){ background:var(--ivory-dark); }
+.stops-table td:last-child{ font-weight:500; color:var(--rust); white-space:nowrap; }
+
+.parking-box{
+  margin-top:36px; padding:26px 30px; border-left:3px solid var(--gold);
+  background:#fff;
+}
+.parking-box h4{ font-size:1.1rem; margin-bottom:6px; }
+.parking-box p{ color:var(--ink-soft); }
+
+/* ---------- Übernachtung ---------- */
+.hotel-media{ margin-bottom:70px; }
+.hotel-media img{ width:100%; height:52vh; min-height:340px; object-fit:cover; }
+
+.info-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:50px;
+}
+.info-card{
+  background:#fff; padding:32px 26px; border-radius:10px; box-shadow:var(--shadow);
+  text-align:center;
+}
+.info-card h4{ font-size:1.15rem; margin-bottom:12px; color:var(--green-dark); }
+.info-card p{ color:var(--ink-soft); font-size:.92rem; line-height:1.65; }
+
+.link-btn{
+  margin-top:16px; background:none; border:none; color:var(--rust);
+  font-family:var(--sans); font-size:.85rem; letter-spacing:.05em; cursor:pointer;
+  border-bottom:1px solid var(--rust); padding-bottom:2px;
+}
+
+/* ---------- Geschenke ---------- */
+.wish-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:44px;
+}
+.wish{
+  background:#fff; padding:18px 22px; border-radius:8px; font-size:.92rem;
+  color:var(--ink-soft); line-height:1.5; box-shadow:0 6px 20px rgba(30,25,15,.06);
+  border-left:3px solid var(--green);
+}
+
+/* ---------- Gallery strip ---------- */
+.gallery-strip{
+  display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:0; padding:0; height:70vh; max-height:640px;
+}
+.gallery-img{ overflow:hidden; height:100%; }
+.gallery-img img{ width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.gallery-img:hover img{ transform:scale(1.05); }
+
+/* ---------- Trauzeugen ---------- */
+.trauzeugen{ padding:90px 0 110px; }
+.trauzeugen .lead{
+  font-family:var(--serif); font-style:italic; font-size:1.5rem; color:var(--ink);
+  margin-top:16px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer{
+  background:var(--ink); color:var(--ivory-dark); text-align:center; padding:70px 20px 50px;
+}
+.footer-names{ font-family:var(--serif); font-size:2.2rem; }
+.footer-names .amp{ color:var(--gold); font-style:italic; }
+.hashtag{ margin-top:10px; letter-spacing:.1em; color:var(--gold); font-size:.85rem; }
+.footer-thanks{ margin-top:22px; font-family:var(--serif); font-style:italic; font-size:1.2rem; opacity:.85; }
+
+/* ---------- Modal ---------- */
+.modal{
+  position:fixed; inset:0; z-index:3000; display:none; align-items:center; justify-content:center; padding:30px;
+}
+.modal.is-open{ display:flex; }
+.modal-backdrop{ position:absolute; inset:0; background:rgba(20,18,12,.82); }
+.modal-content{
+  position:relative; max-width:min(1100px,94vw); max-height:90vh; overflow:auto;
+  background:#fff; border-radius:10px; padding:10px; box-shadow:var(--shadow);
+}
+.modal-content img{ border-radius:6px; }
+.modal-close{
+  position:absolute; top:-18px; right:-18px; width:40px; height:40px; border-radius:50%;
+  background:var(--gold); color:var(--green-dark); border:none; font-size:1.4rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);
+}
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 900px){
+  .timeline-wrap{ grid-template-columns:1fr; gap:44px; }
+  .info-grid{ grid-template-columns:1fr; }
+  .wish-grid{ grid-template-columns:1fr; }
+  .gallery-strip{ grid-template-columns:1fr; height:auto; max-height:none; }
+  .gallery-img{ height:38vh; }
+}
+
+@media (max-width: 720px){
+  .main-nav{
+    position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+    background:var(--ivory); flex-direction:column; justify-content:center; align-items:flex-start;
+    padding:40px; gap:28px; transform:translateX(100%); transition:transform .4s ease;
+    box-shadow:-10px 0 40px rgba(0,0,0,.15);
+  }
+  .main-nav.is-open{ transform:translateX(0); }
+  .main-nav a{ color:var(--ink) !important; font-size:1.1rem; }
+  .nav-toggle{ display:flex; }
+  .nav-toggle.is-open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.is-open span:nth-child(2){ opacity:0; }
+  .nav-toggle.is-open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .nav-toggle.is-open span{ background:var(--ink) !important; }
+
+  .section{ padding:80px 0; }
+  .countdown{ gap:16px; }
+  .countdown-item{ min-width:44px; }
+  .countdown .num{ font-size:1.5rem; }
+  .countdown--hero{ top:70px; gap:14px; }
+  .hero-image{ height:64vh; min-height:380px; }
+}
