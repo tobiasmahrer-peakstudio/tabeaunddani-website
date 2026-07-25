@@ -215,16 +215,19 @@ p{ margin:0; }
 .countdown--hero .label{ color:rgba(255,255,255,.82); }
 
 .scroll-cue{
-  position:relative; display:block; margin:44px auto 0;
-  width:26px; height:42px; border:1.5px solid var(--line); border-radius:16px;
+  display:block; margin:40px auto 0; width:fit-content;
+  text-align:center; text-decoration:none;
 }
-.scroll-cue span{
-  position:absolute; top:7px; left:50%; transform:translateX(-50%);
-  width:4px; height:8px; border-radius:2px; background:var(--green);
-  animation:scrollDown 1.8s infinite;
+.scroll-heart{
+  display:inline-block; font-size:1.9rem; line-height:1; color:var(--rust);
+  transform-origin:center; animation:heartbeat 1.6s ease-in-out infinite;
 }
-@keyframes scrollDown{
-  0%{ opacity:1; top:7px; } 70%{ opacity:0; top:22px; } 100%{ opacity:0; top:22px; }
+@keyframes heartbeat{
+  0%, 100%{ transform:scale(1); }
+  14%{ transform:scale(1.22); }
+  28%{ transform:scale(1); }
+  42%{ transform:scale(1.16); }
+  56%{ transform:scale(1); }
 }
 
 /* ---------- Willkommen ---------- */
